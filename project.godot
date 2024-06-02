@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Bug Reporter"
+config/name="Player Connect"
 config/version="0.5.a"
 run/main_scene="res://Player Connect/Scenes/PlayerConnect.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
