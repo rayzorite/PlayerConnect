@@ -2,7 +2,7 @@ extends Control
 class_name PlayerConnect
 
 ## Create webhook of your discord channel and paste in the url here
-const WEBHOOK_URL: String = "https://discord.com/api/webhooks/1243572131430666292/f2LCUOvEmTVwpgXQpgQ7R6mhlaXsd5EOkh4IpwKAGMxCG01SGO_aw5uua5vGYnX6f1Ug"
+const WEBHOOK_URL: String = ""
 
 ## Add your game's name here, this will be your webhook's username
 const GAME_NAME: String = "The Void Project"
