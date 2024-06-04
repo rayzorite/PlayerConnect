@@ -68,27 +68,35 @@ func ArrayToFormData(array: Array, boundary := "boundary")->String:
 	var output = ""
 	
 	for element in array:
-		output += "--%s\n" % boundary
+		output += "--%s\n" % boundary  # Start boundary for each part
 		
 		if element is Dictionary:
+			# Same handling of dictionaries as in version 1
 			output += 'Content-Disposition: form-data; name="payload_json"\nContent-Type: application/json\n\n'
-			output += JSON.stringify(element, "    ") + "\n"  # Convert dictionary to JSON string
+			output += JSON.stringify(element, "    ") + "\n"
 		elif element is String:
-			if element.is_absolute_path():
-				var f := FileAccess.open(element, FileAccess.READ)
-				if FileAccess.get_open_error() == OK:
-					var file := f.get_as_text()
-					f.close()
-					if !file.is_empty():
-						output += 'Content-Type: plain/text"\n'
-						output += 'Content-Disposition: attachment; filename="%s"; name="files[%s]";\n' % [element.get_file(), file_counter]
-						output += "\n"
-						output += file  ## Add file content to output
+			# Checks if the string element is both an absolute path and file exists
+			if element.is_absolute_path() and FileAccess.file_exists(element):
+				var file := FileAccess.open(element, FileAccess.READ)
+				# Checks if file object is successfully created
+				if file != null:
+					var file_content := file.get_buffer(file.get_length())
+					file.close()
+					
+					# Sets up headers for file upload and adds binary file content
+					output += 'Content-Disposition: form-data; name="files[%s]"; filename="%s"\n' % [file_counter, element.get_file()]
+					output += "Content-Type: application/octet-stream\n\n"
+					output += file_content.get_string_from_utf8()  # Converts binary to string assuming UTF-8 encoding
+					output += "\n"
 				else:
-					printerr("Reporter could not attach File %s to Message, Reason: %s" % [element, error_string(FileAccess.get_open_error())])
-				file_counter+=1
+					# Error handling if file cannot be opened
+					printerr("Reporter could not attach File %s to Message, Reason: Failed to open file" % element)
+			else:
+				# Error handling if file does not exist
+				printerr("Reporter could not attach File %s to Message, Reason: File does not exist" % element)
+			file_counter += 1
 	
-	output += "--%s--" % boundary  ## Adding closing boundary
+	output += "--%s--" % boundary  # Closing boundary
 	return output
 
 ## Function to send the constructed message
@@ -111,3 +119,10 @@ func OnRequestCompleted(result, _response_code, _headers, _body):
 	else:
 		SendingMessageFailed.emit()
 	SendingMessageFinished.emit()
+
+func AddFile(file_path: String, file_name: String):
+	if file_path.is_absolute_path() and FileAccess.file_exists(file_path):
+		requestBody.push_back(file_path)
+	else:
+		printerr("Reporter could not attach File %s to Message, Reason: File does not exist" % file_path)	
+

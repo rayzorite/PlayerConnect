@@ -100,6 +100,13 @@ func SendReport():
 		1: webhookCreator.SetEmbedColor(FEATURE_REQUEST_EMBED_COLOR)  # Feature Request
 		2: webhookCreator.SetEmbedColor(PLAYER_FEEDBACK_EMBED_COLOR)  # Feedback
 	
+	## Example of how to attach a diagnostic log file
+	#var my_diagnostic_log_string = "Log of game events. 1, 2, 3"
+	#var diagnostic_log_file = FileAccess.open("user://diagnostic_log.txt", FileAccess.WRITE)
+	#diagnostic_log_file.store_string(my_diagnostic_log_string)
+	#diagnostic_log_file.close()
+	#webhookCreator.AddFile("user://diagnostic_log.txt", "diagnostic_log.txt")
+
 	## Adding Email to Embed
 	var contactInfo := emailLineEdit.text
 	if !contactInfo.is_empty():
