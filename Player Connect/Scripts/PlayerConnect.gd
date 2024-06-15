@@ -10,6 +10,9 @@ const GAME_NAME: String = "The Void Project"
 ## Calling game version from Project Setttings.. change your game version from there..
 var gameVer = ProjectSettings.get("application/config/version")
 
+## Used for screenshots, easier to look for them here than in AppData
+var projectDir = "res://Player Connect/"
+
 ## Use this website to find discord embed color codes (copy int value)
 ## https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812?permalink_comment_id=3546054
 ## If you wish to add your own or contribute, please describe colors here for other options
@@ -24,6 +27,7 @@ const FEATURE_REQUEST_EMBED_COLOR: int = 5763719 #GREEN
 @export var emailLineEdit: LineEdit
 @export var typeOptions: OptionButton
 @export var messageTextEdit: TextEdit
+@export var screenshotLineEdit: LineEdit
 
 @export_group("Button")
 @export var submitButton: Button
@@ -49,6 +53,8 @@ func _input(event: InputEvent) -> void:
 		OpenAnimation()
 	elif event.is_action_pressed("Report") or event.is_action_pressed("Escape") and isOpened:
 		CloseAnimation()
+	if Input.is_action_pressed("Screenshot"):
+		TakeScreenshot()
 
 func OpenAnimation() -> void:
 	animator.play("Open")
@@ -82,24 +88,24 @@ func OnSubmitButtonHoverExit() -> void:
 
 func OnSubmitButtonPressed() -> void:
 	NonParallelTweening(submitButton, "scale", Vector2.ONE * 0.95, Vector2.ONE, 0.1)
-	
+
 	if webhookCreator.StartMessage() == OK:
 		SendReport()
 
 func SendReport():
 	## Setting Webhook Name
 	webhookCreator.SetUsername(GAME_NAME)
-	
+
 	## Setting up Embed
 	webhookCreator.StartEmbed()
 	webhookCreator.SetEmbedTitle("%s by %s" % [typeOptions.text, nameLineEdit.text])
-	
+
 	## Setting embed color based on what type of option is selected based on their item ids from options button node
 	match typeOptions.get_selected_id():
 		0: webhookCreator.SetEmbedColor(BUG_REPORT_EMBED_COLOR)  # Bug Report
 		1: webhookCreator.SetEmbedColor(FEATURE_REQUEST_EMBED_COLOR)  # Feature Request
 		2: webhookCreator.SetEmbedColor(PLAYER_FEEDBACK_EMBED_COLOR)  # Feedback
-	
+
 	## Example of how to attach a diagnostic log file
 	#var my_diagnostic_log_string = "Log of game events. 1, 2, 3"
 	#var diagnostic_log_file = FileAccess.open("user://diagnostic_log.txt", FileAccess.WRITE)
@@ -111,22 +117,27 @@ func SendReport():
 	var contactInfo := emailLineEdit.text
 	if !contactInfo.is_empty():
 		webhookCreator.AddField("Email Address: ", contactInfo)
-	
+
 	## Adding Scene Name to Embed
 	var sceneName = get_tree().current_scene.name
 	if !sceneName.is_empty():
 		webhookCreator.AddField("Scene: ", sceneName)
-	
+
 	## Adding Message to Embed
 	var message = messageTextEdit.text.replace("```", "")
 	if !message.is_empty():
 		webhookCreator.AddField("Message: ", message)
-	
+
+	## Adding ScreenshotUrl to Embed
+	var screenshotUrl := screenshotLineEdit.text
+	if !screenshotUrl.is_empty():
+		webhookCreator.AddScreenshot(screenshotUrl)
+
 	## Adding footer with game version
 	webhookCreator.SetEmbedFooter("Game Version", gameVer)
-	
+
 	webhookCreator.SendMessage(WEBHOOK_URL)
-	
+
 	## FOR DEBUGGING, YOU CAN REMOVE THIS
 	print_rich(
 		"[b][color=green]REPORT SENT[/color][/b]", "\n",
@@ -137,7 +148,7 @@ func SendReport():
 		"[b]Detailed Report:[/b] ", messageTextEdit.text, "\n",
 		"[b]Game Version:[/b] v", gameVer, "\n",
 		)
-	
+
 	## Closing after submit
 	CloseAnimation()
 
@@ -156,3 +167,20 @@ func NonParallelTweening(object: Object, property: String, firstValue: Variant, 
 	tween.tween_property(object, property, finalValue, duration)
 
 #endregion
+
+func TakeScreenshot():
+	var dir = DirAccess.open(projectDir)
+	if not dir.get_directories().has("Screenshots"):
+		dir.make_dir("Screenshots")
+
+	await RenderingServer.frame_post_draw
+	var viewport = get_viewport()
+	var img = viewport.get_texture().get_image()
+
+	var pattern = ":"
+	var regex = RegEx.new()
+	regex.compile(pattern)
+	var screenshotName = Time.get_datetime_string_from_system()
+	screenshotName = regex.sub(screenshotName, ".", true)
+
+	img.save_png(projectDir+"Screenshots/"+GAME_NAME+" "+screenshotName+".png")
