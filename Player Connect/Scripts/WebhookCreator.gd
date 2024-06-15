@@ -66,10 +66,10 @@ func SetEmbedFooter(footer_text:String, version:String):
 func ArrayToFormData(array: Array, boundary := "boundary")->String:
 	var file_counter := 0
 	var output = ""
-	
+
 	for element in array:
 		output += "--%s\n" % boundary  # Start boundary for each part
-		
+
 		if element is Dictionary:
 			# Same handling of dictionaries as in version 1
 			output += 'Content-Disposition: form-data; name="payload_json"\nContent-Type: application/json\n\n'
@@ -82,7 +82,7 @@ func ArrayToFormData(array: Array, boundary := "boundary")->String:
 				if file != null:
 					var file_content := file.get_buffer(file.get_length())
 					file.close()
-					
+
 					# Sets up headers for file upload and adds binary file content
 					output += 'Content-Disposition: form-data; name="files[%s]"; filename="%s"\n' % [file_counter, element.get_file()]
 					output += "Content-Type: application/octet-stream\n\n"
@@ -95,7 +95,7 @@ func ArrayToFormData(array: Array, boundary := "boundary")->String:
 				# Error handling if file does not exist
 				printerr("Reporter could not attach File %s to Message, Reason: File does not exist" % element)
 			file_counter += 1
-	
+
 	output += "--%s--" % boundary  # Closing boundary
 	return output
 
@@ -104,10 +104,10 @@ func SendMessage(url:String):
 	FinishEmbed()  ## Ensure any current embed is finished
 	var boundary := "b%s" % hash(str(Time.get_unix_time_from_system(), jsonPayload))
 	var payload := ArrayToFormData(requestBody, boundary)  # Convert request body to multipart form data
-	
+
 	## Requesting HTTPClient
-	request(url, 
-			PackedStringArray(["connection: keep-alive", "Content-type: multipart/form-data; boundary=%s" % boundary]), 
+	request(url,
+			PackedStringArray(["connection: keep-alive", "Content-type: multipart/form-data; boundary=%s" % boundary]),
 			HTTPClient.METHOD_POST,
 			payload
 	)
@@ -124,5 +124,21 @@ func AddFile(file_path: String, file_name: String):
 	if file_path.is_absolute_path() and FileAccess.file_exists(file_path):
 		requestBody.push_back(file_path)
 	else:
-		printerr("Reporter could not attach File %s to Message, Reason: File does not exist" % file_path)	
+		printerr("Reporter could not attach File %s to Message, Reason: File does not exist" % file_path)
 
+func AddScreenshot(screenshot_url: String):
+	if not screenshot_url.begins_with("https://") and not screenshot_url.begins_with("http://"):
+		screenshot_url = "https://" + screenshot_url
+		var http_request = HTTPRequest.new()
+		add_child(http_request)
+		var error = http_request.request(screenshot_url)
+
+		if not error:
+			lastEmbed["image"] = {
+				"url": screenshot_url
+			}
+		http_request.queue_free()
+	else:
+		lastEmbed["image"] = {
+			"url": screenshot_url
+		}
