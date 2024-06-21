@@ -1,6 +1,8 @@
 extends Control
 class_name PlayerConnect
 
+## Modified Version of ASecondGuy's Addon https://github.com/ASecondGuy/BugReporter
+
 ## Create webhook of your discord channel and paste in the url here
 const WEBHOOK_URL: String = ""
 
