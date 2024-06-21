@@ -1,6 +1,8 @@
 class_name WebhookCreator
 extends HTTPRequest
 
+## Modified Version of ASecondGuy's Addon https://github.com/ASecondGuy/BugReporter
+
 ## Defining signals for different outcomes
 signal SendingMessageFinished
 signal SendingMessageFailed
