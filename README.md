@@ -1,7 +1,4 @@
 
-<p align="center">
-  <image src="https://i.imgur.com/x59GeXI.png"></image>
-</p>
 <h1 align="center">PLAYER CONNECT</h1>
 <p align="center">Player Connect also known as a Reporting System which can be implemented inside your Godot Game and with ease. it uses Godot's HTTPRequest node to send Calls to Discord's Webhook.. and so in whichever channel your webhook is.. it will send the data to that specific channel.. please keep in mind don't share your webhook url to the public. it would lead to disasters</p>
 
@@ -9,15 +6,6 @@
 Original Repo By ASecondGuy: https://github.com/ASecondGuy/BugReporter</p>
 
 ![Cover](https://github.com/rayzorite/PlayerConnect/assets/92097566/b7e949cd-c08f-4a53-84e9-9415f577a680)
-
-<br>
-<br>
-<br>
-<h2 align="center">SCREENSHOTS</h2>
-
-![ss1](https://github.com/rayzorite/PlayerConnect/assets/92097566/c4a5084f-3be3-40ad-83bc-349e84f7c911)
-![ss2](https://github.com/rayzorite/PlayerConnect/assets/92097566/3a1a26ba-fc31-48fc-a9df-2ba3883955de)
-![ss3](https://github.com/rayzorite/PlayerConnect/assets/92097566/cc096ba5-708a-4e16-8cb9-b479a40b9b1d)
 
 <br>
 <br>
