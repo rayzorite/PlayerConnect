@@ -1,13 +1,13 @@
 extends Control
 class_name PlayerConnect
 
-## Modified Version of ASecondGuy's Addon https://github.com/ASecondGuy/BugReporter
+## Modified and better Version of ASecondGuy's Addon https://github.com/ASecondGuy/BugReporter
 
 ## Create webhook of your discord channel and paste in the url here
 const WEBHOOK_URL: String = ""
 
 ## Add your game's name here, this will be your webhook's username
-const GAME_NAME: String = "The Void Project"
+const GAME_NAME: String = "YOUR GAME NAME"
 
 ## Calling game version from Project Setttings.. change your game version from there..
 var gameVer = ProjectSettings.get("application/config/version")

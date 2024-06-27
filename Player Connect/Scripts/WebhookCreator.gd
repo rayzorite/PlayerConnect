@@ -1,7 +1,7 @@
 class_name WebhookCreator
 extends HTTPRequest
 
-## Modified Version of ASecondGuy's Addon https://github.com/ASecondGuy/BugReporter
+## Modified and better version of ASecondGuy's Addon https://github.com/ASecondGuy/BugReporter
 
 ## Defining signals for different outcomes
 signal SendingMessageFinished
@@ -122,25 +122,25 @@ func OnRequestCompleted(result, _response_code, _headers, _body):
 		SendingMessageFailed.emit()
 	SendingMessageFinished.emit()
 
-func AddFile(file_path: String, file_name: String):
-	if file_path.is_absolute_path() and FileAccess.file_exists(file_path):
-		requestBody.push_back(file_path)
+func AddFile(filePath: String):
+	if filePath.is_absolute_path() and FileAccess.file_exists(filePath):
+		requestBody.push_back(filePath)
 	else:
-		printerr("Reporter could not attach File %s to Message, Reason: File does not exist" % file_path)
+		printerr("Reporter could not attach File %s to Message, Reason: File does not exist" % filePath)
 
-func AddScreenshot(screenshot_url: String):
-	if not screenshot_url.begins_with("https://") and not screenshot_url.begins_with("http://"):
-		screenshot_url = "https://" + screenshot_url
+func AddScreenshot(screenshotUrl: String):
+	if not screenshotUrl.begins_with("https://") and not screenshotUrl.begins_with("http://"):
+		screenshotUrl = "https://" + screenshotUrl
 		var http_request = HTTPRequest.new()
 		add_child(http_request)
-		var error = http_request.request(screenshot_url)
+		var error = http_request.request(screenshotUrl)
 
 		if not error:
 			lastEmbed["image"] = {
-				"url": screenshot_url
+				"url": screenshotUrl
 			}
 		http_request.queue_free()
 	else:
 		lastEmbed["image"] = {
-			"url": screenshot_url
+			"url": screenshotUrl
 		}

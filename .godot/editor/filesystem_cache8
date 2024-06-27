@@ -1,0 +1,18 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1719527264
+README.md::TextFile::-1::1719526389::0::1::::<><>::
+::res://Images/::1719526421
+icon.png::CompressedTexture2D::1430336916701065637::1719526421::1719527265::1::::<><>::
+s1.png::CompressedTexture2D::1110555766873423647::1719526421::1719527265::1::::<><>::
+s2.png::CompressedTexture2D::7003042603959800925::1719526421::1719527265::1::::<><>::
+s3.png::CompressedTexture2D::467563749010930161::1719526421::1719527265::1::::<><>::
+::res://Player Connect/::1717504268
+::res://Player Connect/Fonts/::1717504268
+Montserrat-Black.ttf::FontFile::3966854045276499206::1717504268::1719527265::1::::<><>::
+Montserrat-Bold.ttf::FontFile::608873763742426560::1717504268::1719527265::1::::<><>::
+Montserrat-SemiBold.ttf::FontFile::197361587244559431::1717504268::1719527265::1::::<><>::
+::res://Player Connect/Scenes/::1719526389
+PlayerConnect.tscn::PackedScene::1182964076734176384::1719526389::0::1::::<><>::uid://iw7cdue8nv41::::res://Player Connect/Fonts/Montserrat-Bold.ttf<>uid://c2urtc164q04::::res://Player Connect/Fonts/Montserrat-SemiBold.ttf<>res://Player Connect/Scripts/PlayerConnect.gd<>res://Player Connect/Scripts/WebhookCreator.gd<>uid://bwrtrht42hemw::::res://Player Connect/Fonts/Montserrat-Black.ttf
+::res://Player Connect/Scripts/::1719526389
+PlayerConnect.gd::GDScript::-1::1719526389::0::1::::PlayerConnect<>Control<>::
+WebhookCreator.gd::GDScript::-1::1719526389::0::1::::WebhookCreator<>HTTPRequest<>::
