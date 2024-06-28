@@ -12,6 +12,7 @@ Original Repo By ASecondGuy: https://github.com/ASecondGuy/BugReporter</p>
 <br>
 
 <h2 align="center">HOW TO USE IT</h2>
+p.s: works only in Godot Version 4.3 and above
 <li>Download Zip or Clone this repository, Alternatively you can go to releases page and just download the tool folder (it doesnt come up with project.godot file)</li>
 <li>Now inside your game scene.. press a little "Link" icon in your Scene Tree Hierarchy and search "PlayerConnect".</li>
 <li>This will add the scene to your main game scene.. from here you can go inside PlayerConnect scene and can customize the whole ui to your liking..</li>
