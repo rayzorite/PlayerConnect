@@ -2,8 +2,7 @@
 <h1 align="center">PLAYER CONNECT</h1>
 <p align="center">Player Connect also known as a Reporting System which can be implemented inside your Godot Game and with ease. it uses Godot's HTTPRequest node to send Calls to Discord's Webhook.. and so in whichever channel your webhook is.. it will send the data to that specific channel.. please keep in mind don't share your webhook url to the public. it would lead to disasters</p>
 
-<p align="center">Credits where due, I've used AI's help to accomplish some tasks and couldn't tell it scrapped code from a fellow godot user who already had something like this made..
-Original Repo By ASecondGuy: https://github.com/ASecondGuy/BugReporter</p>
+<p align="center">Credits where due, Original idea from fellow godot user, this is highly modified version of Repo By ASecondGuy: https://github.com/ASecondGuy/BugReporter</p>
 
 ![Cover](https://github.com/rayzorite/PlayerConnect/assets/92097566/b7e949cd-c08f-4a53-84e9-9415f577a680)
 
