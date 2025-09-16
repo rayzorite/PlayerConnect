@@ -12,8 +12,8 @@ config_version=5
 
 config/name="Player Connect"
 config/version="0.5.a"
-run/main_scene="res://Player Connect/Scenes/PlayerConnect.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+run/main_scene="res://PlayerConnect/Scenes/demo.tscn"
+config/features=PackedStringArray("4.5", "Forward Plus")
 
 [display]
 
@@ -21,7 +21,6 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
-window/vsync/vsync_mode=0
 
 [editor_plugins]
 

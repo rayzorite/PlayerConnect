@@ -1,3 +1,2 @@
-res://Player Connect/Scenes/PlayerConnect.tscn
-res://Player Connect/Scripts/WebhookCreator.gd
-res://Player Connect/Scripts/PlayerConnect.gd
+res://PlayerConnect/Scenes/demo.tscn
+res://PlayerConnect/Scripts/PlayerConnect.gd
