@@ -4,7 +4,7 @@
 
 <p align="center">Credits where due, Original idea from fellow godot user, this is highly modified version of Repo By ASecondGuy: https://github.com/ASecondGuy/BugReporter</p>
 
-![Cover](https://github.com/rayzorite/PlayerConnect/assets/92097566/b7e949cd-c08f-4a53-84e9-9415f577a680)
+<img width="1920" height="1080" alt="pc-cover" src="https://github.com/user-attachments/assets/5fc74b94-4378-4a86-9427-afe9e693f085" />
 
 <br>
 <br>
