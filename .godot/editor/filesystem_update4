@@ -1,2 +1,3 @@
-res://PlayerConnect/Scenes/demo.tscn
-res://PlayerConnect/Scripts/PlayerConnect.gd
+res://addons/player-connect/Scenes/demo.tscn
+res://addons/player-connect/plugin.gd
+res://addons/player-connect/Scenes/player-connect_ui.tscn

@@ -12,19 +12,24 @@ config_version=5
 
 config/name="Player Connect"
 config/version="0.5.a"
-run/main_scene="res://PlayerConnect/Scenes/demo.tscn"
+run/main_scene="uid://cre51f0dk0for"
 config/features=PackedStringArray("4.5", "Forward Plus")
+
+[autoload]
+
+PlayerConnectUI="*res://addons/player-connect/Scripts/PlayerConnectSingleton.gd"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/player-connect/plugin.cfg")
 
 [input]
 

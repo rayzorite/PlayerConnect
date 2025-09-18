@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cre51f0dk0for"]
+
+[node name="Demo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HintTextMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HintTextMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="HintTextMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press F2 to Toggle on and off"
+
+[node name="Label2" type="Label" parent="HintTextMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press F12 to Take Screenshot"

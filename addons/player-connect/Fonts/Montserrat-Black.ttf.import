@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bwrtrht42hemw"
-path="res://.godot/imported/Montserrat-Black.ttf-280ac84bf1b390bda77183774b764b19.fontdata"
+path="res://.godot/imported/Montserrat-Black.ttf-b92c09b420817dcd43f5a54e7fde1289.fontdata"
 
 [deps]
 
-source_file="res://PlayerConnect/Fonts/Montserrat-Black.ttf"
-dest_files=["res://.godot/imported/Montserrat-Black.ttf-280ac84bf1b390bda77183774b764b19.fontdata"]
+source_file="res://addons/player-connect/Fonts/Montserrat-Black.ttf"
+dest_files=["res://.godot/imported/Montserrat-Black.ttf-b92c09b420817dcd43f5a54e7fde1289.fontdata"]
 
 [params]
 
